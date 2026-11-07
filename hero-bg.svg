@@ -1,55 +1,98 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 800" preserveAspectRatio="xMidYMid slice">
   <defs>
     <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#050b16"/><stop offset=".6" stop-color="#0d2142"/><stop offset="1" stop-color="#1b3a6b"/>
-    </linearGradient>
-    <linearGradient id="glow" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#c9a24b" stop-opacity=".35"/><stop offset="1" stop-color="#c9a24b" stop-opacity="0"/>
+      <stop offset="0" stop-color="#050b16"/><stop offset=".65" stop-color="#10284d"/><stop offset="1" stop-color="#27508a"/>
     </linearGradient>
     <linearGradient id="road" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#0a1426"/><stop offset="1" stop-color="#030710"/>
+      <stop offset="0" stop-color="#101a2e"/><stop offset="1" stop-color="#03060e"/>
     </linearGradient>
+    <radialGradient id="sun" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#e2c275" stop-opacity=".5"/><stop offset="1" stop-color="#e2c275" stop-opacity="0"/>
+    </radialGradient>
+    <style>
+      .dash{animation:road .7s linear infinite}
+      @keyframes road{to{stroke-dashoffset:-110}}
+      .trail{animation:trail 1.1s linear infinite}
+      @keyframes trail{from{transform:translateX(0)}to{transform:translateX(-220px)}}
+      .sky2{animation:drift 40s linear infinite}
+      @keyframes drift{to{transform:translateX(-400px)}}
+      .bounce{animation:bounce .5s ease-in-out infinite alternate}
+      @keyframes bounce{to{transform:translateY(-3px)}}
+      .spin{transform-box:fill-box;transform-origin:center;animation:spin .6s linear infinite}
+      @keyframes spin{to{transform:rotate(360deg)}}
+      .walk{animation:walk .55s ease-in-out infinite alternate}
+      @keyframes walk{to{transform:translateY(-4px)}}
+      @media (prefers-reduced-motion:reduce){*{animation:none!important}}
+    </style>
   </defs>
+
   <rect width="1600" height="800" fill="url(#sky)"/>
-  <circle cx="1220" cy="250" r="190" fill="url(#glow)"/>
-  <!-- far skyline -->
-  <g fill="#10284d" opacity=".9">
-    <rect x="0" y="420" width="90" height="240"/><rect x="100" y="360" width="70" height="300"/><rect x="180" y="440" width="110" height="220"/>
-    <rect x="300" y="330" width="80" height="330"/><rect x="390" y="400" width="120" height="260"/><rect x="520" y="350" width="70" height="310"/>
-    <rect x="600" y="430" width="100" height="230"/><rect x="710" y="300" width="90" height="360"/><rect x="810" y="410" width="120" height="250"/>
-    <rect x="940" y="360" width="80" height="300"/><rect x="1030" y="440" width="110" height="220"/><rect x="1150" y="320" width="90" height="340"/>
-    <rect x="1250" y="400" width="120" height="260"/><rect x="1380" y="350" width="80" height="310"/><rect x="1470" y="430" width="130" height="230"/>
+  <circle cx="1150" cy="240" r="230" fill="url(#sun)"/>
+
+  <!-- scrolling skyline -->
+  <g class="sky2" fill="#12305a" opacity=".85">
+    <g id="sk">
+      <rect x="0" y="430" width="90" height="230"/><rect x="100" y="370" width="70" height="290"/><rect x="180" y="450" width="110" height="210"/>
+      <rect x="300" y="340" width="80" height="320"/><rect x="390" y="410" width="120" height="250"/><rect x="520" y="360" width="70" height="300"/>
+      <rect x="600" y="440" width="100" height="220"/><rect x="710" y="310" width="90" height="350"/><rect x="810" y="420" width="120" height="240"/>
+      <rect x="940" y="370" width="80" height="290"/><rect x="1030" y="450" width="110" height="210"/><rect x="1150" y="330" width="90" height="330"/>
+      <rect x="1250" y="410" width="120" height="250"/><rect x="1380" y="360" width="80" height="300"/><rect x="1470" y="440" width="130" height="220"/>
+    </g>
+    <use href="#sk" x="1600"/><use href="#sk" x="3200"/>
   </g>
-  <!-- near skyline with lit windows -->
-  <g fill="#0a1a35">
-    <rect x="40" y="470" width="130" height="190"/><rect x="230" y="430" width="100" height="230"/><rect x="420" y="480" width="150" height="180"/>
-    <rect x="640" y="440" width="110" height="220"/><rect x="860" y="490" width="140" height="170"/><rect x="1080" y="450" width="100" height="210"/>
-    <rect x="1290" y="480" width="150" height="180"/>
-  </g>
-  <g fill="#e2c275" opacity=".55">
-    <rect x="60" y="490" width="12" height="16"/><rect x="90" y="520" width="12" height="16"/><rect x="130" y="490" width="12" height="16"/>
-    <rect x="250" y="450" width="12" height="16"/><rect x="285" y="490" width="12" height="16"/><rect x="250" y="540" width="12" height="16"/>
-    <rect x="450" y="505" width="12" height="16"/><rect x="520" y="540" width="12" height="16"/><rect x="480" y="580" width="12" height="16"/>
-    <rect x="665" y="470" width="12" height="16"/><rect x="705" y="520" width="12" height="16"/><rect x="900" y="520" width="12" height="16"/>
-    <rect x="960" y="560" width="12" height="16"/><rect x="1100" y="480" width="12" height="16"/><rect x="1140" y="540" width="12" height="16"/>
-    <rect x="1320" y="510" width="12" height="16"/><rect x="1390" y="550" width="12" height="16"/>
-  </g>
+
   <!-- road -->
-  <rect y="640" width="1600" height="160" fill="url(#road)"/>
-  <g stroke="#c9a24b" stroke-width="4" stroke-dasharray="60 50" opacity=".7"><line x1="0" y1="725" x2="1600" y2="725"/></g>
-  <!-- delivery van -->
-  <g transform="translate(980 560)">
-    <rect x="0" y="0" width="190" height="90" rx="10" fill="#f4f1ea"/>
-    <path d="M190 24h42l30 32v34h-72z" fill="#e6e1d4"/>
-    <path d="M200 32h26l20 22h-46z" fill="#16335f"/>
-    <rect x="18" y="38" width="120" height="8" fill="#c9a24b"/>
-    <circle cx="52" cy="92" r="20" fill="#0a0f1c"/><circle cx="52" cy="92" r="9" fill="#8b93a3"/>
-    <circle cx="216" cy="92" r="20" fill="#0a0f1c"/><circle cx="216" cy="92" r="9" fill="#8b93a3"/>
+  <rect y="650" width="1600" height="150" fill="url(#road)"/>
+  <line class="dash" x1="0" y1="745" x2="1700" y2="745" stroke="#c9a24b" stroke-width="5" stroke-dasharray="60 50" opacity=".75"/>
+  <rect y="648" width="1600" height="4" fill="#c9a24b" opacity=".35"/>
+
+  <!-- speed trails -->
+  <g stroke-linecap="round" opacity=".5">
+    <g class="trail"><line x1="500" y1="610" x2="760" y2="610" stroke="#fff" stroke-width="3"/><line x1="900" y1="610" x2="1060" y2="610" stroke="#c9a24b" stroke-width="3"/></g>
+    <g class="trail" style="animation-duration:.8s"><line x1="300" y1="690" x2="640" y2="690" stroke="#c9a24b" stroke-width="3"/><line x1="800" y1="690" x2="1000" y2="690" stroke="#fff" stroke-width="2"/></g>
   </g>
-  <ellipse cx="1090" cy="660" rx="170" ry="10" fill="#000" opacity=".35"/>
-  <!-- light trails -->
-  <g stroke-linecap="round" opacity=".55">
-    <line x1="0" y1="690" x2="800" y2="690" stroke="#c9a24b" stroke-width="3"/>
-    <line x1="200" y1="760" x2="1100" y2="760" stroke="#ffffff" stroke-width="2"/>
+
+  <!-- moving truck -->
+  <g class="bounce">
+    <ellipse cx="1260" cy="708" rx="300" ry="12" fill="#000" opacity=".4"/>
+    <!-- trailer -->
+    <rect x="990" y="470" width="360" height="200" rx="12" fill="#f6f2e8"/>
+    <rect x="990" y="560" width="360" height="14" fill="#c9a24b"/>
+    <text x="1170" y="535" text-anchor="middle" font-family="Outfit,Arial,sans-serif" font-weight="800" font-size="40" fill="#0f2547">SafeHands</text>
+    <text x="1170" y="610" text-anchor="middle" font-family="Outfit,Arial,sans-serif" font-weight="600" font-size="26" fill="#0f2547">DELIVERY</text>
+    <!-- cab -->
+    <path d="M1350 520h80l60 70v80h-140z" fill="#0f2547"/>
+    <path d="M1368 534h56l40 46h-96z" fill="#9cc3f0" opacity=".85"/>
+    <rect x="1482" y="620" width="18" height="16" rx="4" fill="#ffd978"/>
+    <rect x="1350" y="652" width="150" height="20" fill="#08142a"/>
+    <!-- wheels -->
+    <g>
+      <circle cx="1090" cy="676" r="38" fill="#070b14"/><circle cx="1090" cy="676" r="18" fill="#9aa3b2"/><g class="spin"><rect x="1087" y="660" width="6" height="32" fill="#4b5565"/><rect x="1074" y="673" width="32" height="6" fill="#4b5565"/></g>
+      <circle cx="1210" cy="676" r="38" fill="#070b14"/><circle cx="1210" cy="676" r="18" fill="#9aa3b2"/><g class="spin"><rect x="1207" y="660" width="6" height="32" fill="#4b5565"/><rect x="1194" y="673" width="32" height="6" fill="#4b5565"/></g>
+      <circle cx="1430" cy="676" r="38" fill="#070b14"/><circle cx="1430" cy="676" r="18" fill="#9aa3b2"/><g class="spin"><rect x="1427" y="660" width="6" height="32" fill="#4b5565"/><rect x="1414" y="673" width="32" height="6" fill="#4b5565"/></g>
+    </g>
+  </g>
+
+  <!-- delivery man carrying boxes -->
+  <g class="walk" transform="translate(815 0)">
+    <ellipse cx="60" cy="712" rx="46" ry="8" fill="#000" opacity=".4"/>
+    <!-- legs -->
+    <rect x="38" y="610" width="20" height="96" rx="8" fill="#1a2c52"/>
+    <rect x="64" y="610" width="20" height="96" rx="8" fill="#14233f"/>
+    <rect x="32" y="698" width="30" height="12" rx="6" fill="#0a0f1c"/>
+    <rect x="62" y="698" width="30" height="12" rx="6" fill="#0a0f1c"/>
+    <!-- torso (gold hi-vis vest on navy) -->
+    <rect x="30" y="520" width="62" height="100" rx="16" fill="#0f2547"/>
+    <rect x="42" y="520" width="12" height="100" fill="#c9a24b"/><rect x="68" y="520" width="12" height="100" fill="#c9a24b"/>
+    <!-- head + cap -->
+    <circle cx="62" cy="494" r="20" fill="#e0b48f"/>
+    <path d="M40 490a22 22 0 0144 0z" fill="#c9a24b"/><rect x="56" y="486" width="40" height="6" rx="3" fill="#c9a24b"/>
+    <!-- boxes stack -->
+    <rect x="76" y="540" width="84" height="58" rx="4" fill="#c79a62"/><rect x="76" y="562" width="84" height="6" fill="#a87c44"/>
+    <rect x="86" y="492" width="64" height="48" rx="4" fill="#d8ab72"/><rect x="108" y="492" width="20" height="48" fill="#b8884e" opacity=".6"/>
+    <rect x="94" y="454" width="48" height="38" rx="4" fill="#c79a62"/>
+    <!-- arm -->
+    <path d="M60 545q34 22 30 48" stroke="#0f2547" stroke-width="18" stroke-linecap="round" fill="none"/>
+    <circle cx="90" cy="596" r="9" fill="#e0b48f"/>
   </g>
 </svg>
