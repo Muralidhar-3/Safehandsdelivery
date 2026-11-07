@@ -20,8 +20,8 @@
       @keyframes bounce{to{transform:translateY(-3px)}}
       .spin{transform-box:fill-box;transform-origin:center;animation:spin .6s linear infinite}
       @keyframes spin{to{transform:rotate(360deg)}}
-      .walk{animation:walk .55s ease-in-out infinite alternate}
-      @keyframes walk{to{transform:translateY(-4px)}}
+      .walk{animation:walk 1.4s ease-in-out infinite alternate}
+      @keyframes walk{to{transform:translateY(-2px)}}
       @media (prefers-reduced-motion:reduce){*{animation:none!important}}
     </style>
   </defs>
@@ -74,7 +74,7 @@
   </g>
 
   <!-- delivery man carrying boxes -->
-  <g class="walk" transform="translate(815 0)">
+  <g transform="translate(815 0)"><g class="walk">
     <ellipse cx="60" cy="712" rx="46" ry="8" fill="#000" opacity=".4"/>
     <!-- legs -->
     <rect x="38" y="610" width="20" height="96" rx="8" fill="#1a2c52"/>
@@ -94,5 +94,5 @@
     <!-- arm -->
     <path d="M60 545q34 22 30 48" stroke="#0f2547" stroke-width="18" stroke-linecap="round" fill="none"/>
     <circle cx="90" cy="596" r="9" fill="#e0b48f"/>
-  </g>
+  </g></g>
 </svg>
